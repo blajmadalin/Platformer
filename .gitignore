@@ -1,0 +1,15 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Build folders
+build/
+bin/
+
+# Compiled object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
