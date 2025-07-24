@@ -18,7 +18,7 @@ void UpdateTitleScreen();
 int FinishTitleScreen();
 void UnloadTitleScreen();
 
-//Level01
+//Gameplay
 void InitGameplayScreen();
 void DrawGameplayScreen();
 void UpdateGameplayScreen();

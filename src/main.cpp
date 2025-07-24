@@ -32,11 +32,14 @@ static void UpdateDraw(){
       UpdateTitleScreen();
 
       if(FinishTitleScreen()){
-        //InitGameplayScreen();
+        InitGameplayScreen();
         UnloadTitleScreen();
         currentScreen = GAMEPLAY;
       }
+      break;
 
+    case GAMEPLAY:
+      UpdateGameplayScreen();
       break;
 
     default: break;
@@ -50,6 +53,9 @@ static void UpdateDraw(){
     switch(currentScreen){
       case TITLE:
         DrawTitleScreen();
+        break;
+      case GAMEPLAY:
+        DrawGameplayScreen();
         break;
       default: break;
     }

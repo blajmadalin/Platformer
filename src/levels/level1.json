@@ -1,0 +1,8 @@
+{
+  "level_name" : "First level",
+  "player_start": {"x" : 100, "y" : 200},
+  "enemies" : [
+    {"type" : "bat", "x" : 300, "y": 150, "health": 30},
+    {"type" : "zombie", "x" : 500, "y" : 480, "health" : 100}
+  ]
+}
