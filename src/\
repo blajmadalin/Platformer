@@ -1,0 +1,49 @@
+#include "entities.h"
+#include <raylib.h>
+#include <iostream>
+#include "../screens/screens.h"
+
+float maxJump = -600;
+
+float gravity = 300;
+
+void InitPlayer(Entities* player){
+  player -> health = 100;
+  player -> velocity_x = 5;
+  player -> position = {200, 599};
+  player -> velocity_y = 0;
+  player -> jumping = false;
+  player -> texture = LoadTexture("../../assets/textures/player.png");
+  if(player -> texture.id == 0){
+    std::cerr<<"Failed to load texture!  \n";
+    std::cerr<<"Working dir: %s\n", GetWorkingDirectory();
+
+  } 
+}
+
+void DrawPlayer(Entities* player){
+  DrawTexture(player -> texture, player -> position.x, player -> position.y, WHITE);
+}
+
+void UpdatePlayer(Entities* player, float deltaTime){
+
+  if(IsKeyDown(KEY_D)){
+    player -> position.x += player -> velocity_x;
+  }
+
+  if(IsKeyDown(KEY_A)){
+    player -> position.x -= player -> velocity_x;
+  }
+
+  if(IsKeyDown(KEY_SPACE) && player -> velocity_y == 0){
+    player -> velocity_y = maxJump;
+  }
+
+  player -> velocity_y += gravity * deltaTime;
+  player -> position.y += player -> velocity_y * deltaTime;
+
+  if(player -> position.y >= 600 && player -> velocity_y > 0){
+    player->velocity_y = 0.0f;
+    player->position.y = 600;
+  }   
+}

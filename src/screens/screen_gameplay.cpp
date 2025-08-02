@@ -4,9 +4,11 @@
 #include "../entities/entities.h"
 #include "../utils/json.hpp"
 #include <fstream>
+#include "../levels/platform.h"
 
 Entities player;
-int score;
+Platform platform;
+int score; 
 using json = nlohmann::json;
 
 
@@ -23,6 +25,7 @@ void InitGameplayScreen(){
   */
 
   InitPlayer(&player);
+  InitPlatform(&platform);
   score = 0;
 }
 
@@ -33,9 +36,12 @@ void DrawGameplayScreen(){
 
   //Drawing player
   DrawPlayer(&player);
-  
+
+  //Draw platform
+  DrawPlatform(&platform);
+
   //Drawing score to the top right of the screen
-  const char* scoreText = TextFormat("Score: %d", score);
+ const char* scoreText = TextFormat("Score: %.0f", player.position.y);
   int fontSize = 24;
   int textWidth = MeasureText(scoreText, fontSize);
   int padding = 20;
@@ -43,5 +49,6 @@ void DrawGameplayScreen(){
 }
 
 void UpdateGameplayScreen(){
-  UpdatePlayer(&player);
+  float deltaTime = GetFrameTime();
+  UpdatePlayer(&player, &platform, deltaTime);
 }
